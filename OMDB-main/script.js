@@ -3,7 +3,7 @@
 async function getMovies() {
     try {
         const search = document.getElementById("search").value;
-        const url = "http://www.omdbapi.com/?i=tt3896198&apikey=8b6c64db" + search;
+        const url = "http://www.omdbapi.com/?apikey=[8b6c64db]&s=" + search;
      
         const headers = new Headers ();
         headers.append("Accept", "application/json");
@@ -14,13 +14,19 @@ async function getMovies() {
         const movieHolder = document.getElementById("movieHolder");
 
         for (movie of json.Search) {
-            //  Create a div to hold each image and title 
-            //  Give the div the css class of CARD
+            let divContainer = document.createElement('div');
+            divContainer.classList.add("card");
 
+            let img = document.createElement('img');
+            img.src = movie.Poster;
+            img.width = 100;
+            
+            movieHolder.appendChild(img);
 
-            // Create an image element
-            //      point it to the image from this movie            
+            divContainer.src = movie.Title;
+            divContainer.src = movie.Year;
 
+            card.appendChild(divContainer);
 
             // Create a CONTAINER div to hold the title and year.
             // Give the CONTAINER div the style of container
