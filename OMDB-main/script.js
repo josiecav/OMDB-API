@@ -2,12 +2,15 @@
 
 async function getMovies() {
     try {
-        // 1. Get the search term from the search box, 
-        //          send a request to the ombd (USING YOUR API KEY)
-        //          decode the response as JSON
+        const search = document.getElementById("search").value;
+        const url = "http://www.omdbapi.com/?i=tt3896198&apikey=8b6c64db" + search;
+     
+        const headers = new Headers ();
+        headers.append("Accept", "application/json");
 
+        const response = await fetch(url, {headers:headers});
+        const json = await response.json();
         
-
         const movieHolder = document.getElementById("movieHolder");
 
         for (movie of json.Search) {
